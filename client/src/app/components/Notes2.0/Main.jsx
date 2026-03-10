@@ -108,7 +108,8 @@ export const Main = ({ setWriteNote, SetShowNote,SetShowAllNotes }) => {
     try {
       const status = await deleteNotesfromfolder(authData, body);
       if (status == 200) {
-        FolderNotesList(body);
+        FolderNotesList(AuthData, body);
+        LoadFolders(AuthData);
       }
     } catch (error) {
       console.log(error);

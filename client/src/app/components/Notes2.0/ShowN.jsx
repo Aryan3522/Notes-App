@@ -1,7 +1,11 @@
 import { AuthContext } from "@/app/context/AuthContext";
 import { FolderContext } from "@/app/context/folder";
 import { NotesContext } from "@/app/context/NotesContext";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { toast, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 export const ShowN = ({ SetShowNote, setWriteNote }) => {
   const { showNote, deleteNote, dispatch, GetNotes, updateNotes } =
@@ -21,6 +25,17 @@ export const ShowN = ({ SetShowNote, setWriteNote }) => {
     createdAt: "",
     updatedAt: "",
   });
+  const [isAssigned, setIsAssigned] = useState(false);
+
+  useEffect(() => {
+  if (showNote?._id && folders?.Folders) {
+    const isNoteInAnyFolder = folders.Folders.some((folder) => 
+      folder.folderNotes.includes(showNote._id)
+    );
+    
+    setIsAssigned(isNoteInAnyFolder);
+  }
+}, [showNote, folders]);
  
   
 
@@ -34,19 +49,52 @@ export const ShowN = ({ SetShowNote, setWriteNote }) => {
           payload: data,
         });
         SetShowNote(false);
+        toast.success('Note deleted successfully', {
+          position: 'top-center',
+          autoClose: 3000,
+          theme: 'light',
+          transition: Bounce,
+        });
+
       }
     } catch (error) {
       console.log(error);
+      toast.error('Error deleting note', {
+        position: 'top-center',
+        autoClose: 3000,
+        theme: 'light',
+        transition: Bounce,
+      });
     }
   }
 
-  async function ADDNOTEINFOLDER(authData,body) {
+async function ADDNOTEINFOLDER(authData, body) {
     try {
-      const status = await AddNoteInFolder(authData,body)
-      if(status==200){
-        SetAddInFolder(false)
-      }else{
+      const status = await AddNoteInFolder(authData, body);
+      if (status == 200) {
+        SetAddInFolder(false);
+        setIsAssigned(true);
+        toast.success('Note added to folder successfully', {
+          position: 'top-center',
+          autoClose: 3000,
+          theme: 'light',
+          transition: Bounce,
+        });
+        
+        let data = await GetNotes(AuthData);
+        dispatch({
+          type: "GET_ALL_NOTES",
+          payload: data,
+        });
+
+      } else {
         console.log("file already exists");
+        toast.error('Note is already in the folder', {
+          position: 'top-center',
+          autoClose: 3000,
+          theme: 'light',
+          transition: Bounce,
+        });
       }
     } catch (error) {
       console.log(error);
@@ -183,7 +231,8 @@ export const ShowN = ({ SetShowNote, setWriteNote }) => {
               style={{ width: "50%" }}
             >
               <button
-                className="btn btn-outline-primary me-2"
+                className={`btn me-2 ${isAssigned ? "btn-success" : "btn-outline-primary"}`}
+                disabled={isAssigned}
                 onClick={() => {
                   // UPDATENOTE(showNote._id)
                   // setWriteNote(true)
@@ -192,7 +241,13 @@ export const ShowN = ({ SetShowNote, setWriteNote }) => {
                   SetData(prev=>({...prev,NoteId:showNote._id}))
                 }}
               >
-                Add Note In Folder
+               {isAssigned ? (
+                <>
+                  Added to Folder
+                </>
+              ) : (
+                "Add Note In Folder"
+              )}
               </button>
               <button
                 className="btn btn-outline-danger me-5"
