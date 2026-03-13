@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 const Note = require("./model/notes.js");
 
+require("dotenv").config({ path: "./Config/config.env" });
 async function verify() {
     try {
-        await mongoose.connect("mongodb+srv://admin:admin123@cluster0.pshamyp.mongodb.net/notesapp?retryWrites=true&w=majority");
+        await mongoose.connect(process.env.MONGODB_URI);
         console.log("Connected to MongoDB DB");
         
         const noteDoc = await Note.findOne({ folderId: { $ne: null } });

@@ -2,9 +2,10 @@ const mongoose = require("mongoose");
 const Note = require("./model/notes.js");
 const Folder = require("./model/folder.js");
 
+require("dotenv").config({ path: "./Config/config.env" });
 async function verifyDatabase() {
     try {
-        await mongoose.connect("mongodb+srv://admin:admin123@cluster0.pshamyp.mongodb.net/notesapp?retryWrites=true&w=majority");
+        await mongoose.connect(process.env.MONGODB_URI);
         console.log("Connected to MongoDB for verification.");
 
         // Find notes that are in folders
