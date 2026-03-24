@@ -98,8 +98,8 @@ Follow these steps to run the project on your local machine.
 # 1️⃣ Clone the Repository
 
 ```bash id="ln1hgo"
-git clone https://github.com/<your-username>/<repository-name>.git
-cd <repository-name>
+git clone https://github.com/Aryan3522/Notes-App.git
+cd Notes-App
 ```
 
 ---
