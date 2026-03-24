@@ -80,6 +80,13 @@ notes-app
 ├── README.md
 ```
 
+## .env Example
+```text
+MONGODB_URI=your_mongodb_connection_string_here
+PORT=8086
+SECRET=your_secret_key
+```
+
 ---
 
 # ⚙️ Running the Project Locally
