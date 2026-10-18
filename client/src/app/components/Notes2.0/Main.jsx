@@ -145,7 +145,7 @@ export const Main = ({ setWriteNote, SetShowNote,SetShowAllNotes }) => {
       >
         <div
           className="mt-4 ms-4"
-          style={{ width: "90%", height: "33vh", overflow: "hidden" }}
+          style={{ width: "90%", minHeight: "33vh", overflow: "hidden" }}
         >
           <h2 className="ms-4" style={{ fontSize: "25px", fontWeight: "700" }}>
             Recent Folders
