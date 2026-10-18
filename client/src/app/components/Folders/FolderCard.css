@@ -1,41 +1,44 @@
 .folder-card {
-    list-style: none;
-  }
-  
-  .folder-card-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 240px;
-    height: 140px;
-    border-radius: 8px;
-    padding: 10px;
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .folder-card-container:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .folder-card-icon {
-    margin-bottom: 10px;
-  }
-  
-  .folder-card-title {
-    font-size: 17px;
-    font-weight: 700;
-    text-align: center;
-    color: #333;
-  }
-  
-  .folder-card-date {
-    font-size: 15px;
-    font-weight: 200;
-    text-align: center;
-    color: #777;
-  }
-  
+  list-style: none;
+}
+
+.folder-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 240px;
+  min-height: 140px;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.folder-card-container:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.folder-card-icon {
+  margin-bottom: 10px;
+}
+
+.folder-card-title {
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 17px;
+  font-weight: 700;
+  text-align: center;
+  color: #333;
+}
+
+.folder-card-date {
+  font-size: 15px;
+  font-weight: 200;
+  text-align: center;
+  color: #777;
+}
