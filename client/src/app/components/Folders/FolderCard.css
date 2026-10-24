@@ -8,7 +8,7 @@
     align-items: center;
     justify-content: center;
     width: 240px;
-    height: 140px;
+    min-height: 140px;
     border-radius: 8px;
     padding: 10px;
     cursor: pointer;
@@ -27,6 +27,11 @@
   
   .folder-card-title {
     font-size: 17px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
     font-weight: 700;
     text-align: center;
     color: #333;
