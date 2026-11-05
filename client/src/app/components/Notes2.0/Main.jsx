@@ -191,7 +191,8 @@ export const Main = ({ setWriteNote, SetShowNote,SetShowAllNotes }) => {
                 padding: 0,
                 margin: 0,
                 overflowY: "hidden",
-                width: "80%",
+                flex: 1,
+                minWidth: 0,
                 scrollbarWidth: "none"
               }}
             >
