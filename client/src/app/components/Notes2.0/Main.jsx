@@ -137,7 +137,7 @@ export const Main = ({ setWriteNote, SetShowNote,SetShowAllNotes }) => {
       <div
         className="card shadow"
         style={{
-          width: "88%",
+          width: "100%",
           height: "90vh",
           backgroundColor: "#f6f8fa",
           border: "none",
