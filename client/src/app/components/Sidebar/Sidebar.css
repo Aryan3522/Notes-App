@@ -1,0 +1,162 @@
+/* ---------- Sidebar ---------- */
+/* Change these variables to re-theme the whole sidebar. */
+.app-sidebar {
+  --sidebar-from: #9b8ff0;
+  --sidebar-to: #6f5fd0;
+  --sidebar-text: rgba(255, 255, 255, 0.82);
+  --sidebar-active-bg: #ffffff;
+  --sidebar-active-text: #5a4bc2;
+
+  width: 240px;
+  flex-shrink: 0;
+  height: 90vh;
+  padding: 14px 12px;
+  background: linear-gradient(180deg, var(--sidebar-from), var(--sidebar-to));
+  color: var(--sidebar-text);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(111, 95, 208, 0.35);
+  overflow: hidden;
+  transition: width 0.25s ease;
+}
+
+.app-sidebar.is-collapsed {
+  width: 76px;
+}
+
+/* Header: title on the left, collapse button on the right */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 6px 4px 10px;
+  margin-bottom: 18px;
+}
+
+.sidebar-title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: #fff;
+}
+
+.sidebar-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.sidebar-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.32);
+}
+
+/* Small grey-ish headings above each group */
+.sidebar-section {
+  margin: 0 0 8px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.sidebar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-list li + li {
+  margin-top: 6px;
+}
+
+/* One clickable row */
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 11px 14px;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  color: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, transform 0.15s;
+}
+
+.sidebar-item:hover:not(:disabled):not(.is-active) {
+  background-color: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  transform: translateX(2px);
+}
+
+.sidebar-toggle:focus-visible,
+.sidebar-item:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Selected page: white pill with purple text, like the reference design */
+.sidebar-item.is-active {
+  background-color: var(--sidebar-active-bg);
+  color: var(--sidebar-active-text);
+  box-shadow: 0 4px 12px rgba(40, 20, 120, 0.25);
+}
+
+.sidebar-item:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.sidebar-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  width: 20px;
+  justify-content: center;
+  font-size: 17px;
+}
+
+.sidebar-divider {
+  height: 1px;
+  margin: 18px 8px;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Collapsed: hide the text, keep the icons centered */
+.app-sidebar.is-collapsed .sidebar-label {
+  display: none;
+}
+
+.app-sidebar.is-collapsed .sidebar-header {
+  justify-content: center;
+  padding: 4px 0;
+}
+
+.app-sidebar.is-collapsed .sidebar-item {
+  justify-content: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Small screens: start narrow so the content still has room */
+@media (max-width: 768px) {
+  .app-sidebar {
+    width: 76px;
+  }
+  .app-sidebar:not(.is-collapsed) {
+    width: 210px;
+  }
+}

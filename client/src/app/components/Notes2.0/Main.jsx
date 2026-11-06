@@ -137,7 +137,7 @@ export const Main = ({ setWriteNote, SetShowNote,SetShowAllNotes }) => {
       <div
         className="card shadow"
         style={{
-          width: "88%",
+          width: "100%",
           height: "90vh",
           backgroundColor: "#f6f8fa",
           border: "none",
@@ -145,7 +145,7 @@ export const Main = ({ setWriteNote, SetShowNote,SetShowAllNotes }) => {
       >
         <div
           className="mt-4 ms-4"
-          style={{ width: "90%", minHeight: "33vh", overflow: "hidden" }}
+          style={{ width: "90%",width: "calc(100% - 1.5rem)", minHeight: "33vh", overflow: "hidden" }}
         >
           <h2 className="ms-4" style={{ fontSize: "25px", fontWeight: "700" }}>
             Recent Folders
@@ -191,7 +191,8 @@ export const Main = ({ setWriteNote, SetShowNote,SetShowAllNotes }) => {
                 padding: 0,
                 margin: 0,
                 overflowY: "hidden",
-                width: "80%",
+                flex: 1,
+                minWidth: 0,
                 scrollbarWidth: "none"
               }}
             >
