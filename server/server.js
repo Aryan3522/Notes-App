@@ -10,6 +10,7 @@ const AuthRouter = require("./routes/auth");
 const NotesRouter = require("./routes/notes");
 const folderRouter = require("./routes/folder");
 const profileRouter = require("./routes/profile");
+const fileRouter = require("./routes/file");
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use("/auth", AuthRouter);
 app.use("/notes", NotesRouter);
 app.use("/folder", folderRouter);
 app.use("/profile", profileRouter);
+app.use("/file", fileRouter);
 
 /* server */
 app.listen(process.env.PORT, () => {

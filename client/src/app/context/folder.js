@@ -92,6 +92,44 @@ async function getfolderlist(authData,body) {
 
 
 
+/* ---------- files inside folders ---------- */
+
+function authHeaders(authData) {
+    return { authorization: `bearer ${authData.token}` }
+}
+
+async function getFolderFiles(authData, folderId) {
+    try {
+        const responce = await API.get(`/file/list/${folderId}`, { headers: authHeaders(authData) })
+        return responce?.data
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// Returns { ok: true } or { ok: false, msg } so the UI can show the server's message.
+async function uploadFolderFile(authData, folderId, file) {
+    try {
+        const formData = new FormData()
+        formData.append("file", file)
+        await API.post(`/file/upload/${folderId}`, formData, { headers: authHeaders(authData) })
+        return { ok: true }
+    } catch (error) {
+        console.log(error);
+        return { ok: false, msg: error?.response?.data?.msg || "Upload failed, please try again" }
+    }
+}
+
+async function deleteFolderFile(authData, fileId) {
+    try {
+        await API.delete(`/file/delete/${fileId}`, { headers: authHeaders(authData) })
+        return { ok: true }
+    } catch (error) {
+        console.log(error);
+        return { ok: false, msg: error?.response?.data?.msg || "Could not delete the file" }
+    }
+}
+
 export const FolderContext =createContext()
 
 function reducer(state,action){
@@ -107,7 +145,7 @@ function reducer(state,action){
 export const FolderProvider = ({children})=>{
     const [state,Folderdispatch] = useReducer(reducer,FolderS)
     return(
-        <FolderContext.Provider value={{folders:state,Folderdispatch,getFolders,createfolder,AddNoteInFolder,deletefolder,deleteNotesfromfolder,getfolderlist}}>
+        <FolderContext.Provider value={{folders:state,Folderdispatch,getFolders,createfolder,AddNoteInFolder,deletefolder,deleteNotesfromfolder,getfolderlist,getFolderFiles,uploadFolderFile,deleteFolderFile}}>
             {children}
         </FolderContext.Provider>
     )
