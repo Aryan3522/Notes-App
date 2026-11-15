@@ -9,6 +9,7 @@ import { ShowN } from "./ShowN";
 import { useRouter } from "next/navigation";
 import NoteCard from "./NoteCard";
 import FolderCard from "../Folders/FolderCard";
+import FolderFiles from "../Folders/FolderFiles";
 
 
 export const Main = ({ setWriteNote, SetShowNote,SetShowAllNotes }) => {
@@ -402,7 +403,7 @@ export const Main = ({ setWriteNote, SetShowNote,SetShowAllNotes }) => {
               </div>
               <div
                 className="modal-body bg-dark"
-                style={{ overflowY: "scroll", height: "200px" }}
+                style={{ overflowY: "auto", minHeight: "200px", maxHeight: "65vh" }}
               >
                 {FolderNoteData?.FolderNotes?.length !== 0 ? (
                   FolderNoteData?.FolderNotes?.map((ele,i) => {
@@ -460,9 +461,12 @@ export const Main = ({ setWriteNote, SetShowNote,SetShowAllNotes }) => {
                   })
                 ) : (
                   <div className="d-flex align-itmes-center">
-                    <h1 style={{ color: "white" }}>Folder is empty</h1>
+                    <h5 style={{ color: "white" }}>No notes in this folder</h5>
                   </div>
                 )}
+
+                {/* PNG / JPG / PDF files stored in this folder */}
+                <FolderFiles folderId={folderId} authData={AuthData} />
               </div>
               <div className="modal-footer">
                 <button

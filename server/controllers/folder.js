@@ -2,6 +2,7 @@ const { json } = require("body-parser")
 const folder = require("../model/folder")
 const User = require("../model/user")
 const Note = require("../model/notes")
+const { deleteFilesOfFolder } = require("./file")
 
 function FolderNotesList(AllNOTES,findNotes){
     try {
@@ -101,6 +102,8 @@ exports.deletenotesfromfolder = async(req,res)=>{
 exports.deletefolder = async(req,res)=>{
     try {
         const deletedfolder = await folder.findByIdAndDelete({_id:req.params.id})
+        // Also remove the files uploaded into this folder (database + Cloudinary)
+        await deleteFilesOfFolder(req.params.id)
         res.send({deletedfolder,msg:"folder Deleted"})
     } catch (error) {
         console.log(error);
