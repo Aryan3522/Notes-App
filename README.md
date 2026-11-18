@@ -268,6 +268,12 @@ If you find this project helpful, please consider **starring the repository**.
 It helps the project gain visibility and encourages further development.
 
 ---
+## 👥 Contributors
+
+Thanks to everyone who has contributed to this project:
+
+- [@Aryan3522](https://github.com/Aryan3522) – creator and maintainer
+- [@ShivangiSingh730](https://github.com/ShivangiSingh730) – collapsible sidebar, file storage in folders (PNG/JPG/PDF)
 
 # 📜 License
 
